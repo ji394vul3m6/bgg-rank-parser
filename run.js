@@ -81,12 +81,13 @@ const getBGID = (root, selector) => {
 const parseRowData = (row) => {
   const cells = Array.from(row.querySelectorAll('td'));
 
-  const rank = getText(cells[0]);
+  const rank = parseInt(getText(cells[0]), 10);
   const imgSrc = getImgSrc(cells[1], 'img');
   const name = getDOMText(cells[2], 'a');
-  const id = getBGID(cells[2], 'a');
-  const geekRate = getText(cells[3]);
-  const avgRate = getText(cells[4]);
+  const id = parseInt(getBGID(cells[2], 'a'));
+  const geekRateStr = getText(cells[3]);
+  const geekRate = parseFloat(geekRateStr) || undefined;
+  const avgRate = parseFloat(getText(cells[4])) || undefined;
   return {
     id,
     rank,
